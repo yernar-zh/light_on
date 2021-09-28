@@ -8,6 +8,8 @@ import java.util.Optional;
 
 public interface CountryRepository extends CrudRepository<Country,Long> {
 
+    List<Country> findAll();
+
     Optional<Country> findByCode(String code);
 
 }

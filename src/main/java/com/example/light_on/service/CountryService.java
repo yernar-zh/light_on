@@ -2,12 +2,14 @@ package com.example.light_on.service;
 
 import com.example.light_on.dto.CountryDto;
 import com.example.light_on.models.Country;
+import com.example.light_on.models.Room;
 import com.example.light_on.repository.CountryRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -40,5 +42,9 @@ public class CountryService {
         countryRepository.save(country);
 
         return country;
+    }
+
+    public List<Country> findAll() {
+        return countryRepository.findAll();
     }
 }

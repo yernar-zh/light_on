@@ -2,6 +2,7 @@ package com.example.light_on.controllers;
 
 import com.example.light_on.models.Country;
 import com.example.light_on.models.Room;
+import com.example.light_on.service.CountryService;
 import com.example.light_on.service.RoomService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +14,11 @@ import java.util.Optional;
 @Controller
 public class RoomController {
 
+    private final CountryService countryService;
     private final RoomService roomService;
 
-    public RoomController(RoomService roomService) {
+    public RoomController(CountryService countryService, RoomService roomService) {
+        this.countryService = countryService;
         this.roomService = roomService;
     }
 
@@ -34,8 +37,8 @@ public class RoomController {
 
     @GetMapping("/rooms/add")
     public String roomAdd(Model model, @RequestAttribute("CURRENT_COUNTRY_ATTRIBUTE") Country curCountry) {
-        List<Room> rooms = roomService.findByCountry(curCountry);
-        model.addAttribute("rooms", rooms);
+        List<Country> countries = countryService.findAll();
+        model.addAttribute("countries", countries);
         return "roomAdd";
     }
 

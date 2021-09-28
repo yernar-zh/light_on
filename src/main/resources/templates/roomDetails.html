@@ -2,20 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Private room</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
 
 <header th:insert="blocks/header.html :: header"></header>
 
 <div id="rooms" class="container mt-5">
-    <div th:each="el : ${room}">
-        <h1 th:text="${el.name}"></h1>
-        <p th:text="${el.lightStatus}"></p>
-        <form th:action="'/rooms/' + ${el.id} + '/change'" method="post"><br>
+    <div>
+        <h1 th:text="${room.name}"></h1>
+        <p th:text="${room.lightStatus}"></p>
+        <form th:action="'/rooms/' + ${room.id} + '/change'" method="post"><br>
             <button class="btn btn-warning" type="submit">On/Off</button>
         </form>
-        <form th:action="'/rooms/' + ${el.id} + '/remove'" method="post"><br>
+        <form th:action="'/rooms/' + ${room.id} + '/remove'" method="post"><br>
             <button class="btn btn-warning" type="submit">Delete</button>
         </form>
     </div>

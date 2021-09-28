@@ -2,14 +2,13 @@ package com.example.light_on.controllers;
 
 import com.example.light_on.models.Country;
 import com.example.light_on.models.Room;
-import com.example.light_on.repo.CountryRepository;
-import com.example.light_on.repo.RoomRepository;
+import com.example.light_on.repository.CountryRepository;
+import com.example.light_on.repository.RoomRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -61,7 +60,7 @@ public class RoomController {
     }
 
     @GetMapping("/rooms/{id}")
-    public String blogDetails(@PathVariable(value="id") long id, Model model) {
+    public String blogDetails(@PathVariable(value = "id") long id, Model model) {
 
         if (!roomRepository.existsById(id)) {
             return "redirect:/rooms";
@@ -75,7 +74,7 @@ public class RoomController {
     }
 
     @PostMapping("/rooms/{id}/change")
-    public String roomChangeLight(@PathVariable(value="id") long id, Model model) {
+    public String roomChangeLight(@PathVariable(value = "id") long id, Model model) {
 
         Room room = roomRepository.findById(id).orElseThrow();
         room.setLightStatus(!room.getLightStatus());
@@ -85,7 +84,7 @@ public class RoomController {
     }
 
     @PostMapping("/rooms/{id}/remove")
-    public String removeRoom(@PathVariable(value="id") long id, Model model) {
+    public String removeRoom(@PathVariable(value = "id") long id, Model model) {
 
         Room room = roomRepository.findById(id).orElseThrow();
         roomRepository.delete(room);

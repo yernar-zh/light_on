@@ -1,27 +1,23 @@
 package com.example.light_on.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.sun.istack.NotNull;
+
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name = "country")
 public class Country {
-
-    public Country() {
-    }
-
-    public Country(String name, String code) {
-        this.name = name;
-        this.code = code;
-    }
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Column(name = "name")
     private String name;
+
+    @NotNull
+    @Column(name = "code")
     private String code;
 
     public Long getId() {
@@ -36,12 +32,16 @@ public class Country {
         return name;
     }
 
-    public String getNameById(Long id) {
-        return this.name;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     @Override
@@ -55,13 +55,5 @@ public class Country {
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 }

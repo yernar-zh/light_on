@@ -1,5 +1,7 @@
 package com.example.light_on.models;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -7,17 +9,21 @@ import java.util.Objects;
 public class Room {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Column(name = "name")
     private String name;
 
+    @NotNull
     @ManyToOne
-    @JoinColumn(name="country_id")
+    @JoinColumn(name = "country_id")
     private Country country;
 
-    private Boolean lightStatus = false;
-
+    @NotNull
+    @Column(name = "light_status")
+    private Boolean lightStatus;
 
     public Long getId() {
         return id;

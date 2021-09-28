@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Room creation</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<header th:insert="blocks/header.html :: header"></header>
+
+<div id="rooms" class="container mt-5 mb-5">
+    <h1>Room creation</h1>
+    <form action="/rooms/add" method="post">
+        <input id="inputfield" type="text" name="name" placeholder="Type name" class="form-control"><br><br>
+        <select name="cid" id="cid">
+            <option th:each="el: ${countries}" th:text="${el.name}" th:value="${el.id}"></option>
+        </select><br><br>
+        <button type="submit" class="btn btn-success">Create</button>
+    </form>
+</div>
+
+<footer></footer>
+
+</body>
+</html>

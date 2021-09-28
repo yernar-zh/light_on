@@ -1,0 +1,72 @@
+<div th:fragment="header">
+    <div id="navbar">
+        <nav>
+            <a href="/">Rooms</a>
+            <a href="/rooms/add">Add Room</a>
+        </nav>
+    </div>
+
+    <style>
+        body{
+            font-family: "Microsoft JhengHei";
+        }
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 0px 0px;
+            cursor: pointer;
+            min-width: 100px;
+        }
+        button:hover{
+            background-color: darkgreen;
+        }
+
+        #navbar{
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            font-size: 20px;
+        }
+
+        a{
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+        }
+        a:link{
+            color:white;
+        }
+        a:visited{
+            text-decoration: none;
+            color: white;
+        }
+        a:hover{
+            background-color: darkgreen;
+        }
+
+        #rooms{
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+
+        #eachroom{
+            background-color: #d1ffd3;
+            padding: 2px 15px 15px 15px;
+            margin-bottom: 15px;
+        }
+
+        #inputfield{
+            min-width: 500px;
+            font-size: 16px;
+        }
+
+    </style>
+
+</div>

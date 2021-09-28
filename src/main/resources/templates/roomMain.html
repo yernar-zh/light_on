@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Rooms</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<header th:insert="blocks/header.html :: header"></header>
+
+<div id="rooms" class="container mt-5">
+    <h1>Existing Rooms</h1>
+    <div id="eachroom" th:each="el : ${rooms}" class="alert alert-info mt-2">
+        <h3 th:text="${el.name}"></h3>
+        <p th:text="${el.getCountry().getName()}"></p>
+        <form th:action="'/rooms/' + ${el.id}">
+            <button class="btn btn-warning" type="submit">Enter</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+
+</footer>
+
+</body>
+</html>

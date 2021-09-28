@@ -28,15 +28,15 @@ public class RoomController {
     }
 
     @GetMapping("/rooms")
-    public String roomMain(Model model, @RequestAttribute("CURRENT_COUNTRY_ATTRIBUTE") Country curCountry) {
-        List<Room> rooms = roomService.findByCountry(curCountry);
+    public String roomMain(Model model) {
+        List<Room> rooms = roomService.findAll();
         model.addAttribute("rooms", rooms);
         return "roomMain";
 
     }
 
     @GetMapping("/rooms/add")
-    public String roomAdd(Model model, @RequestAttribute("CURRENT_COUNTRY_ATTRIBUTE") Country curCountry) {
+    public String roomAdd(Model model) {
         List<Country> countries = countryService.findAll();
         model.addAttribute("countries", countries);
         return "roomAdd";

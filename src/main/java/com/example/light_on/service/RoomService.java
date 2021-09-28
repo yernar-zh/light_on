@@ -19,8 +19,8 @@ public class RoomService {
         this.roomRepository = roomRepository;
     }
 
-    public List<Room> findByCountry(Country country) {
-        return roomRepository.findByCountry(country);
+    public List<Room> findAll() {
+        return roomRepository.findAll();
     }
 
     public Optional<Room> findById(Long id) {

@@ -1,5 +1,6 @@
 package com.example.light_on.controllers;
 
+import com.example.light_on.exception.ForbiddenException;
 import com.example.light_on.models.Country;
 import com.example.light_on.models.Room;
 import com.example.light_on.service.CountryService;
@@ -44,17 +45,19 @@ public class RoomController {
 
     @PostMapping("/rooms/add")
     public String roomAddNew(
-            @RequestParam String name, @RequestAttribute("CURRENT_COUNTRY_ATTRIBUTE") Country curCountry
+            @RequestParam String name,
+            @RequestParam Long countryId
     ) {
+        Country country = countryService.findById(countryId).orElseThrow();
         Room room = new Room();
         room.setName(name);
-        room.setCountry(curCountry);
+        room.setCountry(country);
         roomService.create(room);
         return "redirect:/rooms";
     }
 
     @GetMapping("/rooms/{id}")
-    public String blogDetails(@PathVariable(value = "id") long id, Model model) {
+    public String blogDetails(@PathVariable(value = "id") Long id, Model model) {
         Optional<Room> roomOpt = roomService.findById(id);
         if (roomOpt.isEmpty()) {
             return "redirect:/rooms";
@@ -65,12 +68,18 @@ public class RoomController {
     }
 
     @PostMapping("/rooms/{id}/change")
-    public String roomChangeLight(@PathVariable(value = "id") long id, Model model) {
+    public String roomChangeLight(
+            @PathVariable(value = "id") Long id,
+            @RequestAttribute("CURRENT_COUNTRY_ATTRIBUTE") Country curCountry
+    ) {
         Optional<Room> roomOpt = roomService.findById(id);
         if (roomOpt.isEmpty()) {
             return "redirect:/rooms";
         }
         Room room = roomOpt.get();
+        if (!room.getCountry().equals(curCountry)) {
+            throw new ForbiddenException();
+        }
         roomService.change(room);
         return "redirect:/rooms/" + id;
     }

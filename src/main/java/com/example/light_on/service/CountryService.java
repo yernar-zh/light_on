@@ -2,7 +2,6 @@ package com.example.light_on.service;
 
 import com.example.light_on.dto.CountryDto;
 import com.example.light_on.models.Country;
-import com.example.light_on.models.Room;
 import com.example.light_on.repository.CountryRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,8 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.transaction.Transactional;
 import java.util.List;
-countryRepository
+import java.util.Optional;
+
 @Service
 @Transactional
 public class CountryService {
@@ -46,5 +46,9 @@ public class CountryService {
 
     public List<Country> findAll() {
         return countryRepository.findAll();
+    }
+
+    public Optional<Country> findById(Long id) {
+        return countryRepository.findById(id);
     }
 }

@@ -95,4 +95,10 @@ public class RoomController {
         return "redirect:/rooms";
     }
 
+
+    @ExceptionHandler(ForbiddenException.class)
+    public String databaseError() {
+        return "forbidden";
+    }
+
 }
